@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeTable</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h2>Career Productivity Planner</h2>
+    </header>
+  
+    <table>
+        <tr>
+            <th>Time</th>
+            <th>Task</th>
+        </tr>
+        <tr>
+            <td>8:00 AM - 9:00 AM</td>
+            <td><input type="text" id="task1" value=""></td>
+        </tr>
+        <tr>
+            <td>9:00 AM - 10:00 AM</td>
+            <td><input type="text" id="task2" value=""></td>
+        </tr>
+        <tr>
+            <td>10:00 AM - 11:00 AM</td>
+            <td><input type="text" id="task3" value=""></td>
+        </tr>
+        <tr>
+            <td>11:00 AM - 12:00 PM</td>
+            <td><input type="text" id="task4" value=""></td>
+        </tr>
+        <tr>
+            <td>12:00 PM - 1:00 PM</td>
+            <td><input type="text" id="task5" value=""></td>
+        </tr>
+        <tr>
+            <td>1:00 PM - 2:00 PM</td>
+            <td><input type="text" id="task6" value=""></td>
+        </tr>
+        <tr>
+            <td>2:00 PM - 3:00 PM</td>
+            <td><input type="text" id="task7" value=""></td>
+        </tr>
+        <tr>
+            <td>3:00 PM - 4:00 PM</td>
+            <td><input type="text" id="task8" value=""></td>
+        </tr>
+        <tr>
+            <td>4:00 PM - 5:00 PM</td>
+            <td><input type="text" id="task9" value=""></td>
+        </tr>
+        <tr>
+            <td>5:00 PM - 6:00 PM</td>
+            <td><input type="text" id="task10" value=""></td>
+        </tr>
+        <tr>
+            <td>6:00 PM - 7:00 PM</td>
+            <td><input type="text" id="task11" value=""></td>
+        </tr>
+        <tr>
+            <td>7:00 PM - 8:00 PM</td>
+            <td><input type="text" id="task12" value=""></td>
+        </tr>
+        <tr>
+            <td>8:00 PM - 9:00 PM</td>
+            <td><input type="text" id="task12" value=""></td>
+        </tr>
+        <tr>
+            <td>9:00 PM - 10:00 PM</td>
+            <td><input type="text" id="task2" value=""></td>
+        </tr>
+        <tr>
+            <td>10:00 PM - 11:00 PM</td>
+            <td><input type="text" id="task3" value=""></td>
+        </tr>
+        <tr>
+            <td>11:00 PM - 12:00 AM</td>
+            <td><input type="text" id="task4" value=""></td>
+        </tr>
+    </table>
+
+    <script>
+        // Get the tasks from local storage if available
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || {};
+
+        // Populate the table with tasks
+        Object.keys(tasks).forEach(taskId => {
+            const taskInput = document.getElementById(taskId);
+            if (taskInput) {
+                taskInput.value = tasks[taskId];
+            }
+        });
+
+        // Save the tasks to local storage when the input changes
+        document.querySelectorAll('input[type="text"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const taskId = input.id;
+                const taskValue = input.value;
+                tasks[taskId] = taskValue;
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            });
+        });
+    </script>
+</body>
+</html>
